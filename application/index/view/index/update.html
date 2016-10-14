@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>WellStudio - 申请表填写</title>
+	<title>WellStudio - 申请表信息更新</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
@@ -30,37 +30,38 @@
 
 			<div class="am-collapse am-topbar-collapse" id="collapse-head">
 				<ul class="am-nav am-nav-pills am-topbar-nav">
-					<li class="am-active"><a href="#">申请表填写</a></li>
+					<li class="am-active"><a href="#">申请表信息更新</a></li>
 				</ul>
 			</div>
 		</div>
 	</header>
 
+
 	<div class="am-container">
 		<div class="am-g">
 			<div class="am-u-sm-12" style="padding-top: 20px;">
-				<form action="{:config('site_root')}/DoPost/enroll_detail" method="post" class="am-form am-form-horizontal">
+				<form action="{:config('site_root')}/DoPost/update_detail" method="post" class="am-form am-form-horizontal">
 					<input type="hidden" name="_csrf" value="{$csrfToken}">
 					<div class="am-form-group">
 						<label for="u_id" class="am-u-md-3 am-form-label">学号</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_id" name="u_id" placeholder="学号（9位纯数字字符）" pattern="\d{9}" value="" required>
+							<input type="text" id="u_id" name="u_id" placeholder="学号（9位纯数字字符）" pattern="\d{9}" value="{$u.id}">
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_name" class="am-u-md-3 am-form-label">姓名</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_name" minlength="2" name="u_name" placeholder="姓名（2到5位纯中文字符）" pattern="[\u4E00-\u9FA5]{2,5}" value="" required>
+							<input type="text" id="u_name" minlength="2" name="u_name" placeholder="姓名（2到5位纯中文字符）" pattern="[\u4E00-\u9FA5]{2,5}" value="{$u.name}">
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_sex" class="am-u-md-3 am-form-label">性别</label>
 						<div class="am-u-md-9">
 							<label class="am-radio-inline">
-								<input type="radio"  value="男" name="u_sex" checked>男
+								<input type="radio"  value="男" name="u_sex" {php}if($u['sex']==='男')echo 'checked'{/php}>男
 							</label>
 							<label class="am-radio-inline">
-								<input type="radio"  value="女" name="u_sex">女
+								<input type="radio"  value="女" name="u_sex" {php}if($u['sex']==='女')echo 'checked'{/php}>女
 							</label>
 						</div>
 					</div>
@@ -73,59 +74,61 @@
 					<div class="am-form-group">
 						<label for="u_native" class="am-u-md-3 am-form-label">籍贯</label>
 						<div class="am-u-md-9">
-							<input type="text" placeholder="籍贯" id="u_native" name="u_native" value="" required>
+							<input type="text" placeholder="籍贯" id="u_native" name="u_native" value="衡阳" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_birth" class="am-u-md-3 am-form-label">生日</label>
 						<div class="am-u-md-9">
-							<input type="text" class="am-form-field" placeholder="生日" id="u_birth" name="u_birth" data-am-datepicker readonly style="cursor:pointer;" value="" pattern="\d{4}-\d{2}-\d{2}" required>
+							<input type="text" class="am-form-field" placeholder="生日" id="u_birth" name="u_birth" data-am-datepicker readonly style="cursor:pointer;" value="{:date('Y-m-d',$u['birth'])}" pattern="\d{4}-\d{2}-\d{2}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_class" class="am-u-md-3 am-form-label">专业班级</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_class" name="u_class" placeholder="专业班级" value="" required>
+							<input type="text" id="u_class" name="u_class" placeholder="专业班级" value="{$u.class}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_domitory" class="am-u-md-3 am-form-label">宿舍</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_domitory" name="u_domitory" placeholder="宿舍" value="" required>
+							<input type="text" id="u_domitory" name="u_domitory" placeholder="宿舍" value="{$u.domitory}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_phone" class="am-u-md-3 am-form-label">联系电话</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_phone" name="u_phone" pattern="1[34578]\d{9}" placeholder="联系电话" value="" required>
+							<input type="text" id="u_phone" name="u_phone" pattern="1[34578]\d{9}" placeholder="联系电话" value="{$u.phone}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_qq" class="am-u-md-3 am-form-label">QQ号码</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_qq" name="u_qq" placeholder="QQ号码" pattern="\d{6,}" value="" required>
+							<input type="text" id="u_qq" name="u_qq" placeholder="QQ号码" pattern="\d{6,}" value="{$u.qq}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_introduction" class="am-u-md-3 am-form-label">自我介绍</label>
 						<div class="am-u-md-9">
-							<textarea name="u_introduction" id="u_introduction" style="max-width: 100%;min-height: 140px;" placeholder="写一些你对专业的了解，曾经做过web相关的什么事情（比如说建站什么的）" required></textarea>
+							<textarea name="u_introduction" id="u_introduction" style="max-width: 100%;min-height: 140px;" placeholder="写一些你对专业的了解，曾经做过web相关的什么事情（比如说建站什么的）" required>{$u.introduction}</textarea>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_password" class="am-u-md-3 am-form-label">密码</label>
 						<div class="am-u-md-9">
-							<input type="password" id="u_password" name="u_password" placeholder="用于更新你的信息" required>
+							<input type="password" id="u_password" name="u_password" placeholder="请填写第一次提交时所填的密码" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<div class="am-u-md-9 am-u-md-offset-3">
-							<input type="submit" class="am-btn am-btn-primary am-btn-block">
-						</div>
-					</div>
-					<div class="am-form-group">
-						<div class="am-u-md-9 am-u-md-offset-3">
-							<p class="am-form-help">提交过信息了？<a href="javascript:layer.prompt({title: '请输入学号',formType: 0},function(str){if(str.match(/^\d{9}$/)){window.location='{:config('site_root')}/update?id='+str;}else{layer.msg('学号错误');}});">点击修改信息</a></p>
+							<div class="am-g">
+								<div class="am-u-sm-6">
+									<input type="submit" class="am-btn am-btn-primary am-btn-block" name="update" value="提交更新">
+								</div>
+								<div class="am-u-sm-6">
+									<input type="submit" class="am-btn am-btn-danger am-btn-block" name="delete" value="删除信息">
+								</div>
+							</div>
 						</div>
 					</div>
 				</form>
@@ -149,14 +152,13 @@
 	<script src="{:config('site_root')}/static/amazeui/assets/js/jquery.min.js"></script>
 	<!--<![endif]-->
 	<script src="{:config('site_root')}/static/amazeui/assets/js/amazeui.min.js"></script>
-	<script src="{:config('site_root')}/static/layer/layer.js"></script>
 	<script>
 		(function(){
 			var nations = [
 			"汉族", "壮族", "满族", "回族", "苗族", "维吾尔族", "土家族", "彝族", "蒙古族", "藏族", "布依族", "侗族", "瑶族", "朝鲜族", "白族", "哈尼族", "哈萨克族", "黎族", "傣族", "畲族", "傈僳族", "仡佬族", "东乡族", "高山族", "拉祜族", "水族", "佤族", "纳西族", "羌族", "土族", "仫佬族", "锡伯族", "柯尔克孜族", "达斡尔族", "景颇族", "毛南族", "撒拉族", "布朗族", "塔吉克族", "阿昌族", "普米族", "鄂温克族", "怒族", "京族", "基诺族", "德昂族", "保安族", "俄罗斯族", "裕固族", "乌孜别克族", "门巴族", "鄂伦春族", "独龙族", "塔塔尔族", "赫哲族", "珞巴族"];
 			var ele = $('#u_nation');
 			for(var i=0; i<nations.length; i++){
-				ele.append('<option value="'+nations[i]+'">'+nations[i]+'</option>');
+				ele.append('<option value="'+nations[i] + '"' + (nations[i]==='{$u.nation}'?'checked':'') + '>'+nations[i]+'</option>');
 			}
 		})()
 	</script>
