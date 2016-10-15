@@ -2,6 +2,7 @@
 
 return [
     'site_root' => '/enroll-wellstudio',
+    'password' => 'thisisapassword',
     'pass_salt' => 'test',
 
 

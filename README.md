@@ -6,3 +6,5 @@
 
 ### TODO
 - 管理员一个大的模块
+- 前台htmlspecialchars()
+- 用户模块禁止修改学号

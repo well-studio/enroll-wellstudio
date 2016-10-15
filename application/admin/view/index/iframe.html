@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>WellStudio - 申请表信息更新</title>
+	<title>WellStudio - 申请表信息</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
@@ -30,7 +30,7 @@
 
 			<div class="am-collapse am-topbar-collapse" id="collapse-head">
 				<ul class="am-nav am-nav-pills am-topbar-nav">
-					<li class="am-active"><a href="#">申请表信息更新</a></li>
+					<li class="am-active"><a href="#">申请表信息查改</a></li>
 				</ul>
 			</div>
 		</div>
@@ -40,8 +40,7 @@
 	<div class="am-container">
 		<div class="am-g">
 			<div class="am-u-sm-12" style="padding-top: 20px;">
-				<form action="{:config('site_root')}/DoPost/update_detail" method="post" class="am-form am-form-horizontal">
-					<input type="hidden" name="_csrf" value="{$csrfToken}">
+				<form action="{:config('site_root')}/admin/index/do_post" method="post" class="am-form am-form-horizontal">
 					<div class="am-form-group">
 						<label for="u_id" class="am-u-md-3 am-form-label">学号</label>
 						<div class="am-u-md-9">
@@ -116,17 +115,17 @@
 					<div class="am-form-group">
 						<label for="u_password" class="am-u-md-3 am-form-label">密码</label>
 						<div class="am-u-md-9">
-							<input type="password" id="u_password" name="u_password" placeholder="请填写第一次提交时所填的密码" required>
+							<input type="password" id="u_password" name="u_password" placeholder="">
 						</div>
 					</div>
 					<div class="am-form-group">
 						<div class="am-u-md-9 am-u-md-offset-3">
 							<div class="am-g">
 								<div class="am-u-sm-6">
-									<input type="submit" class="am-btn am-btn-primary am-btn-block" name="update" value="提交更新">
+									<input type="submit" class="am-btn am-btn-primary am-btn-block" name="do" value="修改信息表">
 								</div>
 								<div class="am-u-sm-6">
-									<input type="submit" class="am-btn am-btn-danger am-btn-block" name="delete" value="删除信息">
+									<input type="submit" class="am-btn am-btn-danger am-btn-block" name="do" value="删除信息表">
 								</div>
 							</div>
 						</div>

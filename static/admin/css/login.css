@@ -1,0 +1,32 @@
+.content{ margin: 40px 40px 40px 40px;}
+	.scr{ height:300px; margin:0 auto} 
+	@media screen and (min-width: 1201px) { 
+	.scr {width: 400px} 
+	} 
+	/* 设置了浏览器宽度不小于1201px时 scr 显示1200px宽度 */ 
+
+	@media screen and (max-width: 1200px) { 
+	.scr {width: 400px} 
+	} 
+	/* 设置了浏览器宽度不大于1200px时 scr 显示900px宽度 */ 
+
+	@media screen and (max-width: 900px) { 
+	.scr {width: 400px;} 
+	} 
+	/* 设置了浏览器宽度不大于900px时 scr 显示200px宽度 */ 
+
+	@media screen and (max-width: 400px) { 
+	.scr {width: 280px;} 
+	.content {margin: 40px 10px;}
+	} 
+	/* 设置了浏览器宽度不大于500px时 scr 显示100px宽度 */ 
+	.btn {
+		margin-top: 15px;
+	}
+	
+	.top-title{
+		margin-top: 100px;
+	}
+	.btn {
+		margin-top: 20px;
+	}

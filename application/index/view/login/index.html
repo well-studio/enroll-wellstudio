@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>登录well后台</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{:config('site_root')}/static/admin/css/login.css">
+</head>
+<body>
+	<div class="scr">
+		<div class="top-title panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">登录well后台</h3>
+			</div>
+			<form class="content " action="{:config('site_root')}/index/login/doLogin" method="post">
+			  <div class="form-group">
+			      <input type="password" class="form-control input-lg " id="password" name="password" placeholder="请输入口令" required>
+			    </div>
+			  <div class="form-group">
+			      <button type="submit" class="btn  btn-primary btn-lg btn-block">登录</button>
+			    </div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
