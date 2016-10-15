@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/> -->
 	<title>后台数据查看与修改</title>
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
@@ -22,7 +22,7 @@
 <body>
 <div class="container">
 	<div>
-		<table class="table table-striped line">
+		<table class="table table-striped line table-hover">
 			<tr id="info">
 				<th>姓名</th>
 				<th>学号</th>
@@ -30,7 +30,7 @@
 				<th>性别</th>
 			</tr>
 			{foreach name="res" item="v"}
-				<tr onclick="frame()">
+				<tr id="u_{$v['id']}" onclick="frame({$v['id']})" style="cursor:pointer;">
 					<td>{$v.name}</td>
 					<td>{$v['id']}</td>
 					<td>{$v['class']}</td>
@@ -42,7 +42,14 @@
 			<iframe src="__ADMIN__/index/iframe?u_id={$res[0]['id']}" id="frame_id" frameborder="0" name="frame_name" scrolling="auto"></iframe>
 		</div>
 	</div>
-	
 </div>
+<script src="{:config('site_root')}/static/amazeui/assets/js/jquery.min.js"></script>
+<script src="{:config('site_root')}/static/amazeui/assets/js/amazeui.min.js"></script>
+<script>
+	function frame(u_id){
+		$('#frame_id').attr('src', '__ADMIN__/index/iframe?u_id='+u_id);
+	}
+	$('#frame_id').height(($(window).height()-20) + 'px');
+</script>
 </body>
 </html>

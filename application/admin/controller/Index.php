@@ -11,7 +11,9 @@ class Index extends Controller {
 
 	public function index(){
 		$res = db('u_info')->field('id, name, sex, class')->select();
-		// var_dump($res);
+		if(!isset($res[0])){
+			return '还没有任何数据哦~';
+		}
 		$this->assign('res', $res);
 		return $this->fetch();
 	}
@@ -22,17 +24,10 @@ class Index extends Controller {
 		}
 	}
 
-	// public function select_user_info($id = ''){
-	// 	if(empty($id)){
-	// 		$id = input('get.u_id');
-	// 	}
-	// 	$res = db('u_info')->where('id', $id)->find();
-	// 	$this->assign('u', $res);
-	// 	return $this->fetch('index/iframe');
-	// }
 
 	public function update_user_info(){
 		$tempUser = input('post.');
+		$tempUser['u_birth'] = strtotime($tempUser['u_birth']);
 		if(empty($tempUser['u_password'])){
 			unset($tempUser['u_password']);
 		}
@@ -42,14 +37,18 @@ class Index extends Controller {
 					$user[substr($key, 2)] = $value;
 			}
 		}
-		var_dump($user);
+		// var_dump($user);
 		$fields = ['id','name','sex','nation','native','birth','class','domitory','phone','qq','introduction'];
 		if(!empty(input('post.u_password'))){
-			$fileds[] = 'password';
+			$fields[] = 'password';
 			$user['password'] = md5(input('post.u_password').config('pass_salt'));
 		}
-		db('u_info')->field($fields)->where('id', $user['id'])->update($user);
-		// return $this->success('修改成功');
+		try{
+			db('u_info')->field($fields)->where('id', $user['id'])->update($user);
+		}catch(\Exception $e){
+			return $this->error('未知错误');
+		}
+		return $this->success('修改成功');
 	}
 
 	public function delete_user_info(){

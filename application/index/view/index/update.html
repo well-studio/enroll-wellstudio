@@ -74,7 +74,7 @@
 					<div class="am-form-group">
 						<label for="u_native" class="am-u-md-3 am-form-label">籍贯</label>
 						<div class="am-u-md-9">
-							<input type="text" placeholder="籍贯" id="u_native" name="u_native" value="{$u.native}" required>
+							<input type="text" placeholder="籍贯" id="u_native" name="u_native" value="{:htmlspecialchars($u['native'])}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
@@ -86,13 +86,13 @@
 					<div class="am-form-group">
 						<label for="u_class" class="am-u-md-3 am-form-label">专业班级</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_class" name="u_class" placeholder="专业班级" value="{$u.class}" required>
+							<input type="text" id="u_class" name="u_class" placeholder="专业班级" value="{:htmlspecialchars($u['class'])}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
 						<label for="u_domitory" class="am-u-md-3 am-form-label">宿舍</label>
 						<div class="am-u-md-9">
-							<input type="text" id="u_domitory" name="u_domitory" placeholder="宿舍" value="{$u.domitory}" required>
+							<input type="text" id="u_domitory" name="u_domitory" placeholder="宿舍" value="{:htmlspecialchars($u['domitory'])}" required>
 						</div>
 					</div>
 					<div class="am-form-group">
@@ -110,7 +110,7 @@
 					<div class="am-form-group">
 						<label for="u_introduction" class="am-u-md-3 am-form-label">自我介绍</label>
 						<div class="am-u-md-9">
-							<textarea name="u_introduction" id="u_introduction" style="max-width: 100%;min-height: 140px;" placeholder="写一些你对专业的了解，曾经做过web相关的什么事情（比如说建站什么的）" required>{$u.introduction}</textarea>
+							<textarea name="u_introduction" id="u_introduction" style="max-width: 100%;min-height: 140px;" placeholder="写一些你对专业的了解，曾经做过web相关的什么事情（比如说建站什么的）" required>{:htmlspecialchars($u['introduction'])}</textarea>
 						</div>
 					</div>
 					<div class="am-form-group">
